@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>湘知古香事 · 莲馨香囊 — 山东源头 · 湖南推广</title>
-<meta name="description" content="莲馨香囊宣传站：山东潍坊莲馨香制作技艺，湖南推广；古法香囊、香梳、线香、香牌与 AI 定制香囊。">
+<title>湘知古香事 · 莲馨香囊 — 山东源头 · 湖湘推广</title>
+<meta name="description" content="莲馨香囊宣传站：山东潍坊莲馨香制作技艺，湖湘推广；古法香囊、香梳、线香、香牌与 AI 定制香囊。">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div class="wrap topbar-in">
     <a class="brand" href="#top">
       <span class="seal">湘知</span>
-      <span class="brand-text"><strong>湘知古香事</strong><small>莲馨香囊 · 山东源头 · 湖南推广</small></span>
+      <span class="brand-text"><strong>湘知古香事</strong><small>莲馨香囊 · 山东源头 · 湖湘推广</small></span>
     </a>
     <nav class="nav">
       <a href="#products">产品</a>
@@ -31,7 +31,7 @@
       <div class="hero-text">
         <p class="kicker">金种子杯 · 新消费与 AI+文化科技赛道</p>
         <h1>一囊莲馨香<br><span>把山东古法，带进湖南日常</span></h1>
-        <p class="lede">莲馨香制作技艺，山东潍坊传习所，代表性传承人曹昭元。我们在湖南做它的数字化活化：古法合香做芯，湘莲湘绣做衣，一只香囊，佩在身上、挂在床头、放在车里。</p>
+        <p class="lede">莲馨香制作技艺，山东潍坊传习所。在湖湘做它的数字化活化：古法合香做芯，湘莲湘绣做衣，一只香囊，佩在身上、挂在床头、放在车里。</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#ai">AI 定制我的香囊</a>
           <a class="btn btn-ghost" href="#products">看看全部产品</a>
@@ -39,7 +39,7 @@
         <ul class="hero-facts">
           <li><strong>艾叶 · 薄荷 · 丁香 · 佩兰</strong><span>天然草本，无化学添加</span></li>
           <li><strong>棉麻 + 苏绣纹样</strong><span>针脚细密，手工缝制</span></li>
-          <li><strong>168 元</strong><span>香囊香饰参考价（计划书测算口径）</span></li>
+          <li><strong>168 元</strong><span>香囊香饰参考价</span></li>
         </ul>
       </div>
       <div class="hero-img">
@@ -52,8 +52,8 @@
   <!-- 源头 -->
   <section class="origin">
     <div class="wrap origin-in">
-      <div class="origin-item"><span class="origin-no">源</span><div><strong>山东潍坊 · 莲馨香制作技艺</strong><p>传习所牌匾，潍坊市文化广电新闻出版局，2015 年 12 月；代表性传承人曹昭元。</p></div></div>
-      <div class="origin-item"><span class="origin-no">推</span><div><strong>湖南推广 · 鲁艺湘用</strong><p>湖南团队只做 AIGC 数字化、品牌与湖南高校、文旅、企业礼品渠道，不改动核心工艺。</p></div></div>
+      <div class="origin-item"><span class="origin-no">源</span><div><strong>山东潍坊 · 莲馨香制作技艺</strong><p>传习所牌匾，潍坊市文化广电新闻出版局，2015 年 12 月；</p></div></div>
+      <div class="origin-item"><span class="origin-no">推</span><div><strong>湖湘推广 · 鲁艺湘用</strong><p>湖南团队只做 AIGC 数字化、品牌与湖南高校、文旅、企业礼品渠道，不改动核心工艺。</p></div></div>
       <div class="origin-item"><span class="origin-no">信</span><div><strong>授权先行</strong><p>授权落实之前，不生产、不销售、不用传承人名义宣传；师傅配方不公开、不上云。</p></div></div>
     </div>
   </section>
@@ -64,7 +64,7 @@
       <div class="sec-head">
         <p class="sec-kicker">产品展示</p>
         <h2>不止一只香囊，是一整套香事</h2>
-        <p class="sec-sub">以下产品介绍与图片均来自项目产品介绍文档；价格只写计划书里有测算口径的，其余以实际发售为准。</p>
+        <p class="sec-sub">产品以实际发售为准。</p>
       </div>
       <div class="grid products">
         {% for p in products %}
@@ -203,8 +203,7 @@
 <footer class="footer">
   <div class="wrap">
     <p><strong>湘知古香事</strong> —— 基于 AIGC 的古法莲馨香非遗数字化活化与新消费项目</p>
-    <p>本站为第三届金种子杯参赛项目宣传页。产品以实际授权与打样为准；授权落实之前，不以传承人名义销售。价格为计划书测算口径，以实际发售价为准。</p>
-    <p class="foot-small">源头：山东潍坊莲馨香制作技艺 · 传习所（代表性传承人：曹昭元）｜ 推广：湖南</p>
+    <p class="foot-small">源头：山东潍坊莲馨香制作技艺·传习所</p>
   </div>
 </footer>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
