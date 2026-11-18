@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>湘知古香事 · 莲馨香囊 — 山东源头 · 湖南推广</title>
+<meta name="description" content="莲馨香囊宣传站：山东潍坊莲馨香制作技艺，湖南推广；古法香囊、香梳、线香、香牌与 AI 定制香囊。">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top">
+      <span class="seal">湘知</span>
+      <span class="brand-text"><strong>湘知古香事</strong><small>莲馨香囊 · 山东源头 · 湖南推广</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#products">产品</a>
+      <a href="#fragrance">香型</a>
+      <a href="#ai">AI 定制</a>
+      <a href="#craft">工艺</a>
+      <a href="#notice">使用须知</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-text">
+        <p class="kicker">金种子杯 · 新消费与 AI+文化科技赛道</p>
+        <h1>一囊莲馨香<br><span>把山东古法，带进湖南日常</span></h1>
+        <p class="lede">莲馨香制作技艺，山东潍坊传习所，代表性传承人曹昭元。我们在湖南做它的数字化活化：古法合香做芯，湘莲湘绣做衣，一只香囊，佩在身上、挂在床头、放在车里。</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#ai">AI 定制我的香囊</a>
+          <a class="btn btn-ghost" href="#products">看看全部产品</a>
+        </div>
+        <ul class="hero-facts">
+          <li><strong>艾叶 · 薄荷 · 丁香 · 佩兰</strong><span>天然草本，无化学添加</span></li>
+          <li><strong>棉麻 + 苏绣纹样</strong><span>针脚细密，手工缝制</span></li>
+          <li><strong>168 元</strong><span>香囊香饰参考价（计划书测算口径）</span></li>
+        </ul>
+      </div>
+      <div class="hero-img">
+        <img src="{{ url_for('static', filename='img/xiangnang-shizi.png') }}" alt="莲馨香囊 · 柿柿如意">
+        <p class="caption">莲馨香囊 · 柿柿如意 —— 柿子造型，事事如意</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 源头 -->
+  <section class="origin">
+    <div class="wrap origin-in">
+      <div class="origin-item"><span class="origin-no">源</span><div><strong>山东潍坊 · 莲馨香制作技艺</strong><p>传习所牌匾，潍坊市文化广电新闻出版局，2015 年 12 月；代表性传承人曹昭元。</p></div></div>
+      <div class="origin-item"><span class="origin-no">推</span><div><strong>湖南推广 · 鲁艺湘用</strong><p>湖南团队只做 AIGC 数字化、品牌与湖南高校、文旅、企业礼品渠道，不改动核心工艺。</p></div></div>
+      <div class="origin-item"><span class="origin-no">信</span><div><strong>授权先行</strong><p>授权落实之前，不生产、不销售、不用传承人名义宣传；师傅配方不公开、不上云。</p></div></div>
+    </div>
+  </section>
+
+  <!-- 产品展示 -->
+  <section id="products" class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-kicker">产品展示</p>
+        <h2>不止一只香囊，是一整套香事</h2>
+        <p class="sec-sub">以下产品介绍与图片均来自项目产品介绍文档；价格只写计划书里有测算口径的，其余以实际发售为准。</p>
+      </div>
+      <div class="grid products">
+        {% for p in products %}
+        <article class="card product">
+          <div class="card-img"><img src="{{ url_for('static', filename='img/' + p.img) }}" alt="{{ p.name }}" loading="lazy"><span class="tag">{{ p.tag }}</span></div>
+          <div class="card-body">
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.desc }}</p>
+            <ul>
+              {% for pt in p.points %}<li>{{ pt }}</li>{% endfor %}
+            </ul>
+            <p class="price">{% if p.price %}<strong>{{ p.price }}</strong>{% if p.price_note %}<small>（{{ p.price_note }}）</small>{% endif %}{% else %}<strong>即将发售</strong><small>以实际发售价为准</small>{% endif %}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- 香型 -->
+  <section id="fragrance" class="section section-alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-kicker">功用 · 香型</p>
+        <h2>四种香型，四种日常</h2>
+        <p class="sec-sub">线香按香型分安神、固神、凝神、悦神四类，另有春夏秋冬四季香。以下均为传统香型与香气氛围的描述，不作医疗、保健功效宣称。</p>
+      </div>
+      <div class="grid fragrances">
+        {% for f in fragrances %}
+        <article class="card fragrance">
+          <p class="fra-name">{{ f.name }}</p>
+          <p class="fra-use">{{ f.use }}</p>
+          <p>{{ f.note }}</p>
+          <p class="fra-herbs">代表香材：{{ f.herbs }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI 定制 -->
+  <section id="ai" class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-kicker">AI 定制模块</p>
+        <h2>选四个提示词，生成你的香囊</h2>
+        <p class="sec-sub">不用打字，点一点就行。后端会按你的选择，从香型知识库里组合出一款香囊：名字、香材、纹样、囊型与使用方式都不一样。</p>
+      </div>
+      <div class="ai-box">
+        <form id="ai-form">
+          <div class="ai-group">
+            <p class="ai-q">1 · 想要它有什么功用？</p>
+            <div class="chips" data-group="function">
+              {% for o in ai_options.functions %}
+              <button type="button" class="chip" data-value="{{ o.key }}">{{ o.label }}<small>{{ o.xiangxing }}</small></button>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="ai-group">
+            <p class="ai-q">2 · 平时怎么用？可以日常携带吗？</p>
+            <div class="chips" data-group="scene">
+              {% for o in ai_options.scenes %}
+              <button type="button" class="chip" data-value="{{ o.key }}">{{ o.label }}</button>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="ai-group">
+            <p class="ai-q">3 · 外包装喜欢什么风格？</p>
+            <div class="chips" data-group="style">
+              {% for o in ai_options.styles %}
+              <button type="button" class="chip" data-value="{{ o.key }}">{{ o.label }}</button>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="ai-group">
+            <p class="ai-q">4 · 香气要多浓？</p>
+            <div class="chips" data-group="intensity">
+              {% for o in ai_options.intensities %}
+              <button type="button" class="chip" data-value="{{ o.key }}">{{ o.label }}</button>
+              {% endfor %}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-big" id="ai-submit">生成我的香囊</button>
+          <p class="ai-hint" id="ai-hint">四个问题都选好才能生成。生成结果是方案建议，具体香材配比以传习所打样为准。</p>
+        </form>
+        <div class="ai-result" id="ai-result" hidden>
+          <div class="ai-svg" id="ai-svg"></div>
+          <div class="ai-info">
+            <p class="ai-persona" id="ai-persona"></p>
+            <h3 id="ai-name"></h3>
+            <p id="ai-reason"></p>
+            <dl>
+              <dt>香型</dt><dd id="ai-xiangxing"></dd>
+              <dt>香材组合</dt><dd id="ai-herbs"></dd>
+              <dt>囊型</dt><dd id="ai-form-desc"></dd>
+              <dt>怎么用</dt><dd id="ai-usage"></dd>
+              <dt>留香</dt><dd id="ai-duration"></dd>
+            </dl>
+            <p class="price"><strong id="ai-price"></strong></p>
+            <button type="button" class="btn btn-ghost" id="ai-again">换个组合再试一次</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工艺 -->
+  <section id="craft" class="section section-alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="sec-kicker">古法工艺</p>
+        <h2>六步成香，不急不躁</h2>
+      </div>
+      <ol class="grid craft">
+        {% for s in craft_steps %}
+        <li class="card craft-step"><span class="craft-no">{{ s.no }}</span><strong>{{ s.name }}</strong><p>{{ s.note }}</p></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 使用须知 -->
+  <section id="notice" class="section">
+    <div class="wrap notice">
+      <h2>使用须知</h2>
+      <ul>
+        <li>香囊为香氛用品，不可食用；请放在儿童与宠物够不到的地方。</li>
+        <li>燃香类产品（线香、盘香、倒流香）使用时注意通风，远离易燃物，人走火灭。</li>
+        <li>对香材过敏、孕妇与婴幼儿使用前请先咨询专业人士。</li>
+        <li>本站提到的“助眠、净化空气、提神”等均为香气氛围描述，不作医疗、保健功效宣称。</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>湘知古香事</strong> —— 基于 AIGC 的古法莲馨香非遗数字化活化与新消费项目</p>
+    <p>本站为第三届金种子杯参赛项目宣传页。产品以实际授权与打样为准；授权落实之前，不以传承人名义销售。价格为计划书测算口径，以实际发售价为准。</p>
+    <p class="foot-small">源头：山东潍坊莲馨香制作技艺 · 传习所（代表性传承人：曹昭元）｜ 推广：湖南</p>
+  </div>
+</footer>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
