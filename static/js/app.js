@@ -1,4 +1,4 @@
-// AI 定制模块：四组提示词单选，提交到 Flask 后端 /api/generate 生成香囊方案。
+// AI 定制模块（静态版）：四组提示词单选，在浏览器本地调用 SachetGen.generate 生成香囊方案，不发网络请求。
 (function () {
   var form = document.getElementById("ai-form");
   if (!form) return;
@@ -30,21 +30,19 @@
     }
     submitBtn.disabled = true;
     submitBtn.textContent = "正在生成你的香囊…";
-    hint.textContent = "后端正在按你的选择组合香型、囊型与纹样…";
-    fetch("/api/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(picked)
-    })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
-      .then(function (res) {
+    hint.textContent = "正在按你的选择组合香型、囊型与纹样…";
+    var d;
+    try {
+      d = window.SachetGen.generate(picked["function"], picked.scene, picked.style, picked.intensity);
+    } catch (e) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "生成我的香囊";
+      hint.textContent = "生成失败：" + (e.message || "请再点一次");
+      return;
+    }
+    (function () {
         submitBtn.disabled = false;
         submitBtn.textContent = "生成我的香囊";
-        if (!res.ok) {
-          hint.textContent = "生成失败：" + (res.body.error || "请稍后再试");
-          return;
-        }
-        var d = res.body;
         document.getElementById("ai-svg").innerHTML = d.svg;
         document.getElementById("ai-persona").textContent = d.persona + " · " + d.style_label + "纹";
         document.getElementById("ai-name").textContent = d.name;
@@ -61,11 +59,7 @@
         hint.textContent = "生成好了，往下看你的专属香囊。不满意可以换个组合再试一次。";
         resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
       })
-      .catch(function () {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "生成我的香囊";
-        hint.textContent = "网络有点问题，请检查服务是否在运行，再点一次生成。";
-      });
+    })();
   });
 
   document.getElementById("ai-again").addEventListener("click", function () {
