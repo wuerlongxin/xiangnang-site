@@ -58,7 +58,6 @@
         resultBox.hidden = false;
         hint.textContent = "生成好了，往下看你的专属香囊。不满意可以换个组合再试一次。";
         resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      })
     })();
   });
 
